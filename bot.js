@@ -41,7 +41,6 @@ client.on('message', function(message) {
 			let play_info = new Discord.RichEmbed()
 				.setAuthor(client.user.username, client.user.avatarURL)
 				.setDescription('**قم بوضع  اسم او رابط الاغنية :notes:*')
-				.setFooter("تم طلبها بواسطة:", message.author.tag)
 			message.channel.sendEmbed(play_info)
 			return;
 		}
@@ -81,7 +80,7 @@ client.on('message', function(message) {
 						.addField(`**${videoInfo.title}**`, true)
 						.setColor("RANDOM")
 						.setFooter('تم طلبها بواسطة:' + message.author.tag)
-						.setThumbnail(videoInfo.thumbnailUrl)
+						.setImage(videoInfo.thumbnailUrl)
 					//.setDescription('?')
 					message.channel.sendEmbed(play_info);
 				});
