@@ -52,12 +52,11 @@ client.on('message', function(message) {
 					let play_info = new Discord.RichEmbed()
 						.setAuthor(message.author.avatarURL, message.author.tag)
 						.setDescription(`**يتم تشغيل :**`)
-						.addField(`**${videoInfo.title}**`, true)
+						.addField(`**>> Now Playing:**`, videoInfo.title, true)
 						.setColor("RANDOM")
 						.setFooter('SmileServer Music')
 						.setImage(videoInfo.thumbnailUrl)
 					//.setDescription('?')
-					client.user.setGame(`**${videoInfo.title}**`);
 					message.channel.sendEmbed(play_info);
 					queueNames.push(videoInfo.title);
 					// let now_playing = videoInfo.title;
@@ -77,7 +76,7 @@ client.on('message', function(message) {
 					let play_info = new Discord.RichEmbed()
 						.setAuthor(message.author.tag, message.author.avatarURL)
 						.setDescription(`**تمت أضافتها لقائمة الاغاني القادمة**`)
-						.addField(`**${videoInfo.title}**`, true)
+						.addField(`**>> Now Playing:**`, videoInfo.title, true)
 						.setColor("RANDOM")
 						.setFooter('تم طلبها بواسطة:' + message.author.tag)
 						.setImage(videoInfo.thumbnailUrl)
@@ -93,7 +92,6 @@ client.on('message', function(message) {
 			skip_song(message);
 			var server = server = servers[message.guild.id];
 			if (message.guild.voiceConnection) message.guild.voiceConnection.end();
-			client.user.setGame(`${prefix}play | SmileServer`, 'https://twitch.tv/SmileServer');
 		});
 	}
 	else if (message.content.startsWith(prefix + 'vol')) {
@@ -101,21 +99,19 @@ client.on('message', function(message) {
 		// console.log(args)
 		if (args > 100) return message.reply(':x: **100**');
 		if (args < 1) return message.reply(":x: **1**");
-		dispatcher.setVolume(1 * args / 50);
-		message.channel.sendMessage(`Volume Updated To: **${dispatcher.volume*50}**`);
+		dispatcher.setVolume(1 * args / 100);
+		message.channel.sendMessage(`Volume Updated To: **${dispatcher.volume*100}**`);
 	}
 	else if (mess.startsWith(prefix + 'pause')) {
 		if (!message.member.voiceChannel) return message.reply('**عفوا ,انت غير موجود في روم صوتي**');
 		message.reply(':gear: **تم الايقاف مؤقت**').then(() => {
 			dispatcher.pause();
-			client.user.setGame(`${prefix}play | SmileServer`, 'https://twitch.tv/SmileServer');			
 		});
 	}
 	else if (mess.startsWith(prefix + 'resume')) {
 		if (!message.member.voiceChannel) return message.reply('**عفوا ,انت غير موجود في روم صوتي**');
 		message.reply(':gear: **تم اعاده التشغيل**').then(() => {
 			dispatcher.resume();
-			client.user.setGame(`${videoInfo.title}`);			
 		});
 	}
 	else if (mess.startsWith(prefix + 'stop')) {
@@ -123,7 +119,6 @@ client.on('message', function(message) {
 		message.reply(':name_badge: **تم الايقاف**');
 		var server = server = servers[message.guild.id];
 		if (message.guild.voiceConnection) message.guild.voiceConnection.disconnect();
-			client.user.setGame(`${prefix}play | SmileServer`, 'https://twitch.tv/SmileServer');		
 	}
 	else if (mess.startsWith(prefix + 'join')) {
 		if (!message.member.voiceChannel) return message.reply('**عفوا ,انت غير موجود في روم صوتي**');
@@ -144,7 +139,6 @@ client.on('message', function(message) {
 					.setImage(videoInfo.thumbnailUrl)
 				message.channel.sendEmbed(playing_now_info);
 				queueNames.push(videoInfo.title);
-				client.user.setGame(`${videoInfo.title}`);
 				// let now_playing = videoInfo.title;
 				now_playing.push(videoInfo.title);
 
@@ -237,14 +231,19 @@ Bot Ping: ${client.ping}ms.**`;
 
 client.on('message', message => {
 var HelpEmbed = new Discord.RichEmbed()
-
-	.setAuthor(message.author.avatarURL, message.author.username)
 	.setDescription(helpe)
 	.setColor('RANDOM')
 	.setFooter("Help Commands.")	
 	if(message.content == `${prefix}help`) {
-		message.channel.send('تم أرسال قائمة المساعدة.')
-		message.author.send(HelpEmbed);
+		message.channel.send(HelpEmbed);
+	}
+});
+
+
+client.on('message', message => {
+	if(message.content === prefix + 'ping') {
+		message.channel.send(`PONG!, ${client.ping}ms.`);
+		
 	}
 });
 
