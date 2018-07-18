@@ -11,7 +11,7 @@ const prefix = '1';
 
 client.on('ready', function() {
 	console.log(`i am ready ${client.user.username}`);
-	client.user.setGame('1Play | JustBlack', 'https://twitch.tv/JustBlack');
+	client.user.setGame('1Play | SmileServer', 'https://twitch.tv/SmileServer');
 	
 });
 
@@ -65,7 +65,7 @@ client.on('message', function(message) {
 						.setDescription(`**يتم تشغيل :**`)
 						.addField(`**${videoInfo.title}**`, true)
 						.setColor("RANDOM")
-						.setFooter('JustBlack Music')
+						.setFooter('SmileServer Music')
 						.setImage(videoInfo.thumbnailUrl)
 					//.setDescription('?')
 					client.user.setGame(`**${videoInfo.title}**`);
@@ -104,7 +104,7 @@ client.on('message', function(message) {
 			skip_song(message);
 			var server = server = servers[message.guild.id];
 			if (message.guild.voiceConnection) message.guild.voiceConnection.end();
-			client.user.setGame(`${prefix}play | JustBlack`, 'https://twitch.tv/JustBlack');
+			client.user.setGame(`${prefix}play | SmileServer`, 'https://twitch.tv/JustBlack');
 		});
 	}
 	else if (message.content.startsWith(prefix + 'vol')) {
@@ -134,7 +134,7 @@ client.on('message', function(message) {
 		message.reply(':name_badge: **تم الايقاف**');
 		var server = server = servers[message.guild.id];
 		if (message.guild.voiceConnection) message.guild.voiceConnection.disconnect();
-			client.user.setGame(`${prefix}play | JustBlack`, 'https://twitch.tv/JustBlack');		
+			client.user.setGame(`${prefix}play | SmileServer`, 'https://twitch.tv/JustBlack');		
 	}
 	else if (mess.startsWith(prefix + 'join')) {
 		if (!message.member.voiceChannel) return message.reply('**عفوا ,انت غير موجود في روم صوتي**');
@@ -250,3 +250,5 @@ client.on('message', message => {
 		message.sender.send(HelpEmbed);
 	}
 });
+
+client.login(process.env.TOKEN);
