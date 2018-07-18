@@ -232,7 +232,9 @@ ${prefix}vol ${amount} > لتغيير الصوت
 ${prefix}skip > لتخطي الاغنية
 ${prefix}stop > لأيقاف الاغنية
 ${prefix}pause > لأيقاف الاغنية مؤقتاً
-${prefix}resume > لتشغيل الاغنية التي وقفتها مؤقتاً**`;
+${prefix}resume > لتشغيل الاغنية التي وقفتها مؤقتاً
+
+Bot Ping: ${client.ping}ms.**`;
 
 var HelpEmbed = new Discord.RichEmbed()
 
