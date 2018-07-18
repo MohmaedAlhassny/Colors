@@ -11,7 +11,8 @@ const prefix = '1';
 
 client.on('ready', function() {
 	console.log(`i am ready ${client.user.username}`);
-	client.user.setGame('1Play | JustBlack', 'https://twitch.tv/JustBlack');
+	console.log('work');
+	client.user.setGame('1Play | SmileServer', 'https://twitch.tv/JSmileServer');
 	
 });
 
@@ -54,7 +55,7 @@ client.on('message', function(message) {
 						.setDescription(`**يتم تشغيل :**`)
 						.addField(`**${videoInfo.title}**`, true)
 						.setColor("RANDOM")
-						.setFooter('JustBlack Music')
+						.setFooter('SmileServer Music')
 						.setImage(videoInfo.thumbnailUrl)
 					//.setDescription('?')
 					client.user.setGame(`**${videoInfo.title}**`);
@@ -93,7 +94,7 @@ client.on('message', function(message) {
 			skip_song(message);
 			var server = server = servers[message.guild.id];
 			if (message.guild.voiceConnection) message.guild.voiceConnection.end();
-			client.user.setGame(`${prefix}play | JustBlack`, 'https://twitch.tv/JustBlack');
+			client.user.setGame(`${prefix}play | SmileServer`, 'https://twitch.tv/SmileServer');
 		});
 	}
 	else if (message.content.startsWith(prefix + 'vol')) {
@@ -108,7 +109,7 @@ client.on('message', function(message) {
 		if (!message.member.voiceChannel) return message.reply('**عفوا ,انت غير موجود في روم صوتي**');
 		message.reply(':gear: **تم الايقاف مؤقت**').then(() => {
 			dispatcher.pause();
-			client.user.setGame(`${prefix}play | JustBlack`, 'https://twitch.tv/JustBlack');			
+			client.user.setGame(`${prefix}play | SmileServer`, 'https://twitch.tv/SmileServer');			
 		});
 	}
 	else if (mess.startsWith(prefix + 'resume')) {
@@ -123,7 +124,7 @@ client.on('message', function(message) {
 		message.reply(':name_badge: **تم الايقاف**');
 		var server = server = servers[message.guild.id];
 		if (message.guild.voiceConnection) message.guild.voiceConnection.disconnect();
-			client.user.setGame(`${prefix}play | JustBlack`, 'https://twitch.tv/JustBlack');		
+			client.user.setGame(`${prefix}play | SmileServer`, 'https://twitch.tv/SmileServer');		
 	}
 	else if (mess.startsWith(prefix + 'join')) {
 		if (!message.member.voiceChannel) return message.reply('**عفوا ,انت غير موجود في روم صوتي**');
@@ -233,10 +234,6 @@ ${prefix}stop > لأيقاف الاغنية
 ${prefix}pause > لأيقاف الاغنية مؤقتاً
 ${prefix}resume > لتشغيل الاغنية التي وقفتها مؤقتاً**`;
 
-
-
-client.on('message', message => {
-
 var HelpEmbed = new Discord.RichEmbed()
 
 	.setAuthor(message.author.avatarURL, message.author.username)
@@ -244,11 +241,10 @@ var HelpEmbed = new Discord.RichEmbed()
 	.setColor('RANDOM')
 	.setFooter("Help Commands.")
 
+
+client.on('message', message => {
 	if(message.content == `${prefix}help`) {
 		message.channel.send('تم أرسال قائمة المساعدة.')
 		message.author.send(HelpEmbed);
 	}
 });
-
-
-client.login(process.env.TOKEN);
