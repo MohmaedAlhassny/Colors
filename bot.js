@@ -247,3 +247,5 @@ var HelpEmbed = new Discord.RichEmbed()
 		message.author.send(HelpEmbed);
 	}
 });
+
+client.login(process.env.TOKEN);
