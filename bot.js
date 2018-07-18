@@ -236,14 +236,6 @@ ${prefix}resume > لتشغيل الاغنية التي وقفتها مؤقتاً
 
 Bot Ping: ${client.ping}ms.**`;
 
-var HelpEmbed = new Discord.RichEmbed()
-
-	.setAuthor(message.author.avatarURL, message.author.username)
-	.setDescription(helpe)
-	.setColor('RANDOM')
-	.setFooter("Help Commands.")
-
-
 client.on('message', message => {
 var HelpEmbed = new Discord.RichEmbed()
 
