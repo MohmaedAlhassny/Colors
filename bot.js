@@ -243,6 +243,12 @@ var HelpEmbed = new Discord.RichEmbed()
 
 
 client.on('message', message => {
+var HelpEmbed = new Discord.RichEmbed()
+
+	.setAuthor(message.author.avatarURL, message.author.username)
+	.setDescription(helpe)
+	.setColor('RANDOM')
+	.setFooter("Help Commands.")	
 	if(message.content == `${prefix}help`) {
 		message.channel.send('تم أرسال قائمة المساعدة.')
 		message.author.send(HelpEmbed);
