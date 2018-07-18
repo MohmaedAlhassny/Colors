@@ -193,7 +193,7 @@ async function handleVideo(video, msg, voiceChannel, playlist = false) {
 	}
 	return undefined;
 }//by ,$ ReBeL ء , 🔕#4777 'CODES SERVER'
-var argument = message.content.split(` `).slice(1).join(' ');
+var argument = msg.content.split(` `).slice(1).join(' ');
 function play(guild, song) {
 	const serverQueue = queue.get(guild.id);
 
