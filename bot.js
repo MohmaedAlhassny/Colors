@@ -233,6 +233,10 @@ ${prefix}stop > لأيقاف الاغنية
 ${prefix}pause > لأيقاف الاغنية مؤقتاً
 ${prefix}resume > لتشغيل الاغنية التي وقفتها مؤقتاً**`;
 
+
+
+client.on('message', message => {
+
 var HelpEmbed = new Discord.RichEmbed()
 
 	.setAuthor(message.author.avatarURL, message.author.username)
@@ -240,12 +244,11 @@ var HelpEmbed = new Discord.RichEmbed()
 	.setColor('RANDOM')
 	.setFooter("Help Commands.")
 
-
-client.on('message', message => {
 	if(message.content == `${prefix}help`) {
 		message.channel.send('تم أرسال قائمة المساعدة.')
 		message.author.send(HelpEmbed);
 	}
 });
+
 
 client.login(process.env.TOKEN);
